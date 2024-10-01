@@ -17,7 +17,11 @@
         <!-- Styles -->
         @livewireStyles
     </head>
-<body>
+
+<!-- de esta forma se inicializa alpine.js -->
+    <body x-data="{ open: false,}" 
+    :class="{ 'overflow-hidden':open,}"
+    class="sm:overflow-auto">
     
     @include('layouts.includes.admin.navigation')
 
@@ -28,6 +32,11 @@
             {{$slot}}
         </div>
     </div>
+
+    <div x-cloak
+    x-show="open "
+    x-on:click="open = false"
+    class="bg-gray-900 bg-opacity-50 fixed inset-0 z-30 sm:hidden"></div>
   
     @stack('modals')
 
